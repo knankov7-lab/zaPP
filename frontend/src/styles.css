@@ -1,0 +1,188 @@
+:root {
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: #e9f0ff;
+  background: radial-gradient(circle at 20% 10%, #1f3b6b 0%, #111a32 45%, #0a0f1f 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+}
+
+button {
+  cursor: pointer;
+  background: linear-gradient(130deg, #56e39f, #39a0ed);
+  color: #071221;
+  font-weight: 700;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.auth-page {
+  display: grid;
+  place-items: center;
+}
+
+.glass-card,
+.panel {
+  backdrop-filter: blur(10px);
+  background: rgba(11, 20, 44, 0.7);
+  border: 1px solid rgba(112, 160, 255, 0.35);
+  border-radius: 20px;
+  padding: 1.2rem;
+}
+
+.glass-card {
+  width: min(450px, 92vw);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.tabs button {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.tabs .active {
+  background: #56e39f;
+  color: #071221;
+}
+
+form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+input,
+select {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.inline-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inline-check input {
+  width: 18px;
+  height: 18px;
+}
+
+.dashboard header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1.4fr 1fr;
+}
+
+.stack {
+  margin-bottom: 1rem;
+}
+
+.list,
+.history,
+.leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.list button {
+  width: 100%;
+  text-align: left;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.kpi-grid div {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.8rem;
+}
+
+.kpi-grid span,
+.history small {
+  display: block;
+  opacity: 0.75;
+}
+
+.history li,
+.leaderboard li {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.6rem;
+}
+
+.leaderboard li {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.row-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.event-edit-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.message,
+.floating-message {
+  color: #8cf4c6;
+}
+
+.floating-message {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  background: rgba(5, 15, 35, 0.95);
+  border: 1px solid #56e39f;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
