@@ -247,24 +247,39 @@ export default function App() {
           </div>
           <form onSubmit={handleAuthSubmit}>
             {authMode === "register" && (
-              <input
-                placeholder="Name"
-                value={authForm.name}
-                onChange={(e) => setAuthForm({ ...authForm, name: e.target.value })}
-              />
+              <div className="field">
+                <label htmlFor="auth-name">Name</label>
+                <small className="field-help">Как да се показва името ти в класацията и профила.</small>
+                <input
+                  id="auth-name"
+                  placeholder="Name"
+                  value={authForm.name}
+                  onChange={(e) => setAuthForm({ ...authForm, name: e.target.value })}
+                />
+              </div>
             )}
-            <input
-              placeholder="Email"
-              type="email"
-              value={authForm.email}
-              onChange={(e) => setAuthForm({ ...authForm, email: e.target.value })}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              value={authForm.password}
-              onChange={(e) => setAuthForm({ ...authForm, password: e.target.value })}
-            />
+            <div className="field">
+              <label htmlFor="auth-email">Email</label>
+              <small className="field-help">Използва се за вход в акаунта.</small>
+              <input
+                id="auth-email"
+                placeholder="Email"
+                type="email"
+                value={authForm.email}
+                onChange={(e) => setAuthForm({ ...authForm, email: e.target.value })}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="auth-password">Password</label>
+              <small className="field-help">Поне 6 символа за по-сигурен профил.</small>
+              <input
+                id="auth-password"
+                placeholder="Password"
+                type="password"
+                value={authForm.password}
+                onChange={(e) => setAuthForm({ ...authForm, password: e.target.value })}
+              />
+            </div>
             <button type="submit">{authMode === "login" ? "Sign in" : "Create account"}</button>
           </form>
           {message && <p className="message">{message}</p>}
@@ -325,24 +340,39 @@ export default function App() {
         <section className="panel">
           <h2>New Simulation</h2>
           <form onSubmit={createSimulation} className="stack">
-            <input
-              placeholder="Startup name"
-              value={newSim.startupName}
-              onChange={(e) => setNewSim({ ...newSim, startupName: e.target.value })}
-            />
-            <input
-              placeholder="Sector"
-              value={newSim.sector}
-              onChange={(e) => setNewSim({ ...newSim, sector: e.target.value })}
-            />
-            <input
-              placeholder="Max rounds"
-              type="number"
-              min="3"
-              max="20"
-              value={newSim.maxRounds}
-              onChange={(e) => setNewSim({ ...newSim, maxRounds: Number(e.target.value) })}
-            />
+            <div className="field">
+              <label htmlFor="sim-name">Startup name</label>
+              <small className="field-help">Името на компанията, с която ще играеш.</small>
+              <input
+                id="sim-name"
+                placeholder="Startup name"
+                value={newSim.startupName}
+                onChange={(e) => setNewSim({ ...newSim, startupName: e.target.value })}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="sim-sector">Sector</label>
+              <small className="field-help">Пазарният сегмент на стартъпа, напр. SaaS, AI, FinTech.</small>
+              <input
+                id="sim-sector"
+                placeholder="Sector"
+                value={newSim.sector}
+                onChange={(e) => setNewSim({ ...newSim, sector: e.target.value })}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="sim-rounds">Max rounds</label>
+              <small className="field-help">Брой рундове за симулацията. Повече рундове = по-дълга игра.</small>
+              <input
+                id="sim-rounds"
+                placeholder="Max rounds"
+                type="number"
+                min="3"
+                max="20"
+                value={newSim.maxRounds}
+                onChange={(e) => setNewSim({ ...newSim, maxRounds: Number(e.target.value) })}
+              />
+            </div>
             <button type="submit">Create</button>
           </form>
 
@@ -371,38 +401,63 @@ export default function App() {
               </div>
               {activeSim.status === "active" ? (
                 <form onSubmit={playRound} className="stack">
-                  <input
-                    type="number"
-                    value={decision.marketingBudget}
-                    onChange={(e) => setDecision({ ...decision, marketingBudget: Number(e.target.value) })}
-                    placeholder="Marketing budget"
-                  />
-                  <input
-                    type="number"
-                    value={decision.productInvestment}
-                    onChange={(e) => setDecision({ ...decision, productInvestment: Number(e.target.value) })}
-                    placeholder="Product investment"
-                  />
-                  <input
-                    type="number"
-                    value={decision.hiringCount}
-                    onChange={(e) => setDecision({ ...decision, hiringCount: Number(e.target.value) })}
-                    placeholder="Hiring count"
-                  />
-                  <select
-                    value={decision.pricingStrategy}
-                    onChange={(e) => setDecision({ ...decision, pricingStrategy: e.target.value })}
-                  >
-                    <option value="balanced">Balanced</option>
-                    <option value="premium">Premium</option>
-                    <option value="budget">Budget</option>
-                  </select>
-                  <input
-                    type="number"
-                    value={decision.cashReserve}
-                    onChange={(e) => setDecision({ ...decision, cashReserve: Number(e.target.value) })}
-                    placeholder="Cash reserve"
-                  />
+                  <div className="field">
+                    <label htmlFor="decision-marketing">Marketing budget</label>
+                    <small className="field-help">Разход за реклама този рунд. По-висока стойност често вдига трафика.</small>
+                    <input
+                      id="decision-marketing"
+                      type="number"
+                      value={decision.marketingBudget}
+                      onChange={(e) => setDecision({ ...decision, marketingBudget: Number(e.target.value) })}
+                      placeholder="Marketing budget"
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="decision-product">Product investment</label>
+                    <small className="field-help">Инвестиция в продукта. Подобрява качеството и клиентското усещане.</small>
+                    <input
+                      id="decision-product"
+                      type="number"
+                      value={decision.productInvestment}
+                      onChange={(e) => setDecision({ ...decision, productInvestment: Number(e.target.value) })}
+                      placeholder="Product investment"
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="decision-hiring">Hiring count</label>
+                    <small className="field-help">Брой нови хора в екипа. Повишава капацитета, но и разходите.</small>
+                    <input
+                      id="decision-hiring"
+                      type="number"
+                      value={decision.hiringCount}
+                      onChange={(e) => setDecision({ ...decision, hiringCount: Number(e.target.value) })}
+                      placeholder="Hiring count"
+                    />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="decision-pricing">Pricing strategy</label>
+                    <small className="field-help">Balanced е среден риск, Premium носи по-висока цена, Budget гони обем.</small>
+                    <select
+                      id="decision-pricing"
+                      value={decision.pricingStrategy}
+                      onChange={(e) => setDecision({ ...decision, pricingStrategy: e.target.value })}
+                    >
+                      <option value="balanced">Balanced</option>
+                      <option value="premium">Premium</option>
+                      <option value="budget">Budget</option>
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="decision-reserve">Cash reserve</label>
+                    <small className="field-help">Минимален кешов буфер за защита при лоши събития.</small>
+                    <input
+                      id="decision-reserve"
+                      type="number"
+                      value={decision.cashReserve}
+                      onChange={(e) => setDecision({ ...decision, cashReserve: Number(e.target.value) })}
+                      placeholder="Cash reserve"
+                    />
+                  </div>
                   <button type="submit">Run Next Round</button>
                 </form>
               ) : (
@@ -441,52 +496,82 @@ export default function App() {
           <section className="panel">
             <h2>Admin: Event Settings</h2>
             <form onSubmit={createEvent} className="stack">
-              <input
-                placeholder="Event type (unique)"
-                value={eventForm.type}
-                onChange={(e) => setEventForm({ ...eventForm, type: e.target.value })}
-              />
-              <input
-                placeholder="Description"
-                value={eventForm.description}
-                onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
-              />
-              <input
-                type="number"
-                step="0.01"
-                placeholder="Revenue multiplier"
-                value={eventForm.revenueMultiplier}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, revenueMultiplier: Number(e.target.value) })
-                }
-              />
-              <input
-                type="number"
-                step="0.01"
-                placeholder="Cost multiplier"
-                value={eventForm.costMultiplier}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, costMultiplier: Number(e.target.value) })
-                }
-              />
-              <input
-                type="number"
-                step="0.01"
-                placeholder="Satisfaction delta"
-                value={eventForm.satisfactionDelta}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, satisfactionDelta: Number(e.target.value) })
-                }
-              />
-              <input
-                type="number"
-                step="0.01"
-                placeholder="Market share delta"
-                value={eventForm.marketShareDelta}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, marketShareDelta: Number(e.target.value) })
-                }
-              />
+              <div className="field">
+                <label htmlFor="event-type">Event type (unique)</label>
+                <small className="field-help">Уникален ключ на събитието, напр. market_boom.</small>
+                <input
+                  id="event-type"
+                  placeholder="Event type (unique)"
+                  value={eventForm.type}
+                  onChange={(e) => setEventForm({ ...eventForm, type: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="event-description">Description</label>
+                <small className="field-help">Текстът, който играчът ще вижда след рунда.</small>
+                <input
+                  id="event-description"
+                  placeholder="Description"
+                  value={eventForm.description}
+                  onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="event-revenue">Revenue multiplier</label>
+                <small className="field-help">1.00 = без промяна, 1.20 = +20% приходи, 0.90 = -10%.</small>
+                <input
+                  id="event-revenue"
+                  type="number"
+                  step="0.01"
+                  placeholder="Revenue multiplier"
+                  value={eventForm.revenueMultiplier}
+                  onChange={(e) =>
+                    setEventForm({ ...eventForm, revenueMultiplier: Number(e.target.value) })
+                  }
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="event-cost">Cost multiplier</label>
+                <small className="field-help">Влияние върху разходите. 1.10 значи +10% разходи.</small>
+                <input
+                  id="event-cost"
+                  type="number"
+                  step="0.01"
+                  placeholder="Cost multiplier"
+                  value={eventForm.costMultiplier}
+                  onChange={(e) =>
+                    setEventForm({ ...eventForm, costMultiplier: Number(e.target.value) })
+                  }
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="event-satisfaction">Satisfaction delta</label>
+                <small className="field-help">Директна промяна в удовлетвореността, напр. +3 или -2.</small>
+                <input
+                  id="event-satisfaction"
+                  type="number"
+                  step="0.01"
+                  placeholder="Satisfaction delta"
+                  value={eventForm.satisfactionDelta}
+                  onChange={(e) =>
+                    setEventForm({ ...eventForm, satisfactionDelta: Number(e.target.value) })
+                  }
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="event-share">Market share delta</label>
+                <small className="field-help">Промяна в пазарния дял в процентни пункта.</small>
+                <input
+                  id="event-share"
+                  type="number"
+                  step="0.01"
+                  placeholder="Market share delta"
+                  value={eventForm.marketShareDelta}
+                  onChange={(e) =>
+                    setEventForm({ ...eventForm, marketShareDelta: Number(e.target.value) })
+                  }
+                />
+              </div>
               <label className="inline-check">
                 <input
                   type="checkbox"
