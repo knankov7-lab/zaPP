@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API_URL = "http://localhost:4000/api";
+const configuredApiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+const normalizedApiUrl = configuredApiUrl.replace(/\/$/, "");
+const API_URL = normalizedApiUrl.endsWith("/api") ? normalizedApiUrl : `${normalizedApiUrl}/api`;
 
 async function api(path, method = "GET", body, token) {
   const response = await fetch(`${API_URL}${path}`, {
