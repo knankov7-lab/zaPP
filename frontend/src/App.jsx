@@ -52,6 +52,7 @@ export default function App() {
     isActive: true,
   });
   const [eventEdits, setEventEdits] = useState({});
+  const [showHelp, setShowHelp] = useState(false);
 
   const activeSim = useMemo(() => details?.simulation, [details]);
 
@@ -280,7 +281,45 @@ export default function App() {
           <p>Welcome, {user?.name}</p>
         </div>
         <button onClick={logout}>Logout</button>
+        <button onClick={() => setShowHelp(true)}>? Help</button>
       </header>
+
+      {showHelp && (
+        <div className="modal-overlay" onClick={() => setShowHelp(false)}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowHelp(false)}>✕</button>
+            <h2>Как се играе?</h2>
+
+            <h3>1. Създай симулация</h3>
+            <p>Въведи <b>име на стартъп</b>, <b>сектор</b> и <b>брой седмици</b> (3–20). Кликни <b>Create</b>.</p>
+
+            <h3>2. KPI показатели</h3>
+            <ul>
+              <li><b>Cash</b> – наличен бюджет в $. Падне ли до 0, губиш.</li>
+              <li><b>Market Share</b> – пазарен дял в %. Стремиш се към по-висок.</li>
+              <li><b>Satisfaction</b> – доволни ли са клиентите (0–100). Влияе на приходите.</li>
+            </ul>
+
+            <h3>3. Решения за всяка седмица</h3>
+            <ul>
+              <li><b>Marketing budget</b> – повече пари = повече клиенти и пазарен дял.</li>
+              <li><b>Product investment</b> – инвестиция в продукта = по-висока удовлетвореност.</li>
+              <li><b>Hiring count</b> – нови служители = повече разходи, но и по-добър продукт.</li>
+              <li><b>Pricing strategy</b> – <i>balanced</i> е безопасно; <i>premium</i> носи повече приходи но рискува satisfaction; <i>budget</i> увеличава клиентите но намалява margin.</li>
+              <li><b>Cash reserve</b> – минимум кеш, който запазваш. Защита от фалит.</li>
+            </ul>
+
+            <h3>4. Пазарни събития</h3>
+            <p>След всеки рунд се случва случайно събитие (boom, конкурент, вирален buzz и др.), което променя KPI-тата. Нямаш контрол върху тях – само се адаптираш.</p>
+
+            <h3>5. Края на играта</h3>
+            <p>Симулацията приключва след последния рунд или ако остане без пари. Резултатът се изчислява от cash + market share + satisfaction и влиза в <b>Leaderboard</b>.</p>
+
+            <h3>Съвет</h3>
+            <p>Балансирай разходите – не харчи всичко за маркетинг, но не спирай и инвестициите в продукта. Следи cash внимателно!</p>
+          </div>
+        </div>
+      )}
 
       <main className="grid">
         <section className="panel">
